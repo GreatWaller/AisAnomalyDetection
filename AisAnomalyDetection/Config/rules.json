@@ -1,0 +1,29 @@
+{
+  "rules": [
+    {
+      "name": "SpeedLimitRule",
+      "threshold": 20
+    },
+    {
+      "name": "RestrictedAreaRule",
+      "areaCoordinates": [
+        {
+          "latitude": 34.5,
+          "longitude": -123.5
+        },
+        {
+          "latitude": 34.5,
+          "longitude": -123.0
+        },
+        {
+          "latitude": 35.0,
+          "longitude": -123.0
+        },
+        {
+          "latitude": 35.0,
+          "longitude": -123.5
+        }
+      ]
+    }
+  ]
+}
