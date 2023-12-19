@@ -14,5 +14,12 @@ namespace AisAnomalyDetection.Util
         public int Threshold { get; set; }
         public List<Coordinate> AreaCoordinates { get; set; }
         public List<RuleInfo> SubRules { get; set; }
+
+        public TimeRange RestrictedTime { get; set; } // 新添加的属性，用于 TimeRestrictedRule
+
+        // 新添加的属性，用于 ShipInfoRule
+        public bool AISStatus { get; set; }
+        public string ShipType { get; set; }
+        public string ShipSize { get; set; }
     }
 }

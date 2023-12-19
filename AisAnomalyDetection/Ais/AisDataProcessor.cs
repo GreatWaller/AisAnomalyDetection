@@ -23,8 +23,11 @@ namespace AisAnomalyDetection.Ais
             double longitude = double.Parse(dataFields[3]);
             double speed = double.Parse(dataFields[4]);
 
-            // 创建 AisData 实例
-            var aisData = new AisData(vesselName, vesselId, latitude, longitude, speed);
+            // 新增的时间字段
+            DateTime timestamp = DateTime.Parse(dataFields[5]);
+
+            // 创建 AisData 实例，并传递时间戳
+            var aisData = new AisData(vesselName, vesselId, latitude, longitude, speed, timestamp);
 
             // 触发 AIS 数据处理完成事件
             OnAisDataProcessed(new AisDataEventArgs(aisData));

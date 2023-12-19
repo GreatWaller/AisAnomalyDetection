@@ -88,7 +88,24 @@
           ]
         }
       ]
+    },
+    // 新增规则
+    {
+      "Type": "TimeRestrictedRule",
+      "Name": "TimeRestrictedRule1",
+      "RestrictedTime": {
+        "StartTime": "2023-01-01T08:00:00",
+        "EndTime": "2023-01-01T18:00:00"
+      }
+    },
+    {
+      "Type": "ShipInfoRule",
+      "Name": "ShipInfoRule1"
+    },
+    {
+      "Type": "MinSpeedRule",
+      "Name": "MinSpeedRule1",
+      "Threshold": 10
     }
-    // ��������Ķ���
   ]
 }

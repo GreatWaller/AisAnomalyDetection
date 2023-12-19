@@ -15,14 +15,17 @@ namespace AisAnomalyDetection.Ais
         public double Speed { get; set; }
         // 其他船舶相关属性可以根据需求添加
 
+        public DateTime Timestamp { get; set; }
+
         // 构造函数用于初始化实例
-        public AisData(string vesselName, string vesselId, double latitude, double longitude, double speed)
+        public AisData(string vesselName, string vesselId, double latitude, double longitude, double speed, DateTime timestamp)
         {
             VesselName = vesselName;
             VesselId = vesselId;
             Latitude = latitude;
             Longitude = longitude;
             Speed = speed;
+            Timestamp = timestamp;
         }
     }
 }
