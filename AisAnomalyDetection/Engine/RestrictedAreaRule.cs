@@ -9,9 +9,10 @@ namespace AisAnomalyDetection.Engine
 {
     internal class RestrictedAreaRule : Rule
     {
-        public RestrictedAreaRule(List<Coordinate> areaCoordinates)
+        public RestrictedAreaRule(string name, List<Coordinate> areaCoordinates)
         {
-            Name = "RestrictedAreaRule";
+            Type = "RestrictedAreaRule";
+            Name = name;
             Condition = data => IsInRestrictedArea(data, areaCoordinates);
             OnViolation = data => Console.WriteLine($"禁入区域告警：船舶 {data.VesselId} 进入禁入区域");
         }

@@ -8,9 +8,10 @@ namespace AisAnomalyDetection.Engine
 {
     internal class SpeedLimitRule:Rule
     {
-        public SpeedLimitRule(int threshold)
+        public SpeedLimitRule(string name, int threshold)
         {
-            Name = "SpeedLimitRule";
+            Type = "SpeedLimitRule";
+            Name = name;
             Condition = data => data.Speed > threshold;
             OnViolation = data => Console.WriteLine($"超速告警：船舶 {data.VesselId} 超过速度限制");
         }

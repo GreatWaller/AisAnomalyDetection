@@ -11,26 +11,23 @@ namespace AisAnomalyDetection.Engine
     internal class CompositeRule : Rule
     {
         private List<Rule> subRules;
+        private Func<IEnumerable<bool>, bool> checkMethod;
 
-        public CompositeRule(string name, List<Rule> rules, Func<AisData, bool> combineMethod)
+        public CompositeRule(string name, List<Rule> rules, Func<IEnumerable<bool>, bool> checkMethod)
         {
+            Type = "CompositeRule";
             Name = name;
             subRules = rules;
-            Condition = combineMethod;
+            this.checkMethod = checkMethod;
+            Condition = data => CheckSubRules(data);
+            OnViolation = data => Console.WriteLine($"组合规则告警：船舶 {data.VesselId} 违反了组合规则 {Name}");
         }
 
-        // 全部满足
-        private bool CheckSubRulesAll(AisData data)
+        private bool CheckSubRules(AisData data)
         {
-            // 判断所有子规则是否都满足
-            return subRules.All(rule => rule.Condition(data));
-        }
-
-        // 至少一个满足
-        private bool CheckSubRulesAny(AisData data)
-        {
-            // 判断是否至少有一个子规则满足
-            return subRules.Any(rule => rule.Condition(data));
+            // 检查所有子规则是否满足
+            var results = subRules.Select(rule => rule.Condition(data));
+            return checkMethod(results);
         }
     }
 

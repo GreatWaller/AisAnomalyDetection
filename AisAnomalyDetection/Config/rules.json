@@ -1,29 +1,94 @@
 {
-  "rules": [
+  "Rules": [
     {
-      "name": "SpeedLimitRule",
-      "threshold": 20
+      "Type": "SpeedLimitRule",
+      "Name": "SpeedRule1",
+      "Threshold": 20
     },
     {
-      "name": "RestrictedAreaRule",
-      "areaCoordinates": [
+      "Type": "RestrictedAreaRule",
+      "Name": "AreaRule1",
+      "AreaCoordinates": [
         {
-          "latitude": 34.5,
-          "longitude": -123.5
+          "Latitude": 34.0,
+          "Longitude": -122.0
         },
         {
-          "latitude": 34.5,
-          "longitude": -123.0
+          "Latitude": 34.5,
+          "Longitude": -121.5
         },
         {
-          "latitude": 35.0,
-          "longitude": -123.0
+          "Latitude": 35.0,
+          "Longitude": -121.0
         },
         {
-          "latitude": 35.0,
-          "longitude": -123.5
+          "Latitude": 34.5,
+          "Longitude": -120.5
+        },
+        {
+          "Latitude": 34.0,
+          "Longitude": -120.0
+        }
+      ]
+    },
+    {
+      "Type": "CompositeRuleAllMatch",
+      "Name": "CompositeAllRule1",
+      "SubRules": [
+        {
+          "Type": "SpeedLimitRule",
+          "Name": "SpeedRule2",
+          "Threshold": 15
+        },
+        {
+          "Type": "RestrictedAreaRule",
+          "Name": "AreaRule2",
+          "AreaCoordinates": [
+            {
+              "Latitude": 34.2,
+              "Longitude": -121.8
+            },
+            {
+              "Latitude": 34.3,
+              "Longitude": -121.7
+            },
+            {
+              "Latitude": 34.4,
+              "Longitude": -121.6
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Type": "CompositeRuleAnyMatch",
+      "Name": "CompositeAnyRule1",
+      "SubRules": [
+        {
+          "Type": "SpeedLimitRule",
+          "Name": "SpeedRule3",
+          "Threshold": 18
+        },
+        {
+          "Type": "RestrictedAreaRule",
+          "Name": "AreaRule3",
+          "AreaCoordinates": [
+            {
+              "Latitude": 34.1,
+              "Longitude": -121.9
+            },
+            {
+              "Latitude": 34.2,
+              "Longitude": -121.8
+            },
+            {
+              "Latitude": 34.3,
+              "Longitude": -121.7
+            }
+          ]
         }
       ]
     }
+    // ��������Ķ���
   ]
 }
