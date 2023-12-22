@@ -62,6 +62,23 @@ namespace AisAnomalyDetection
             // 模拟 AIS 数据，船舶速度低于最小限制，触发 MinSpeedRule
             string rawAisDataMinSpeed = "Ship202,7,34.1,-122.5,8.0,2023-01-01T14:00:00";
             var aisDataMinSpeed = aisDataProcessor.ProcessAisData(rawAisDataMinSpeed);
+            Console.WriteLine("=====================================================");
+
+            // 模拟 AIS 数据，船舶在队列中行驶距离超过设定的限制
+            string rawAisData1 = "Ship123,8,34.0,-122.0,15.0,2023-01-01T14:00:00";
+            var aisData1 = aisDataProcessor.ProcessAisData(rawAisData1);
+
+            string rawAisData2 = "Ship123,8,34.1,-121.9,15.0,2023-01-01T14:01:00";
+            var aisData2 = aisDataProcessor.ProcessAisData(rawAisData2);
+
+            // 等待一段时间，以便船舶行驶超过设定的限制
+            //System.Threading.Thread.Sleep(1000);
+
+            string rawAisData3 = "Ship123,8,34.2,-131.8,15.0,2023-01-01T14:02:00";
+            var aisData3 = aisDataProcessor.ProcessAisData(rawAisData3);
+            Console.WriteLine("=====================================================");
+
+
         }
 
         private static List<Rule> LoadSubRules(List<RuleInfo> subRuleInfos)
@@ -87,6 +104,9 @@ namespace AisAnomalyDetection
                         break;
                     case "MinSpeedRule":
                         subRules.Add(new MinSpeedRule(subRuleInfo.Name, subRuleInfo.Threshold));
+                        break;
+                    case "DistanceLimitRule": // 新增处理 DistanceLimitRule
+                        subRules.Add(new DistanceLimitRule(subRuleInfo.Name, subRuleInfo.DistanceLimit));
                         break;
                 }
             }
@@ -133,6 +153,9 @@ namespace AisAnomalyDetection
                             break;
                         case "MinSpeedRule":
                             rules.Add(new MinSpeedRule(ruleInfo.Name, ruleInfo.Threshold));
+                            break;
+                        case "DistanceLimitRule":
+                            rules.Add(new DistanceLimitRule(ruleInfo.Name, ruleInfo.DistanceLimit));
                             break;
                             // 可根据需要添加其他规则类型的处理
 
