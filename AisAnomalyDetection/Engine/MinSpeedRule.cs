@@ -19,7 +19,7 @@ namespace AisAnomalyDetection.Engine
 
         private bool CheckMinSpeed(AisData data, double minSpeed)
         {
-            return data.Speed >= minSpeed;
+            return data.Speed < minSpeed;
         }
     }
 }
